@@ -77,24 +77,33 @@ let appData = {
             appData.income[itemIncome] = cashIncome;
         }
 
-        let addExp = prompt('Перечислите возможные расходы за рассчитываемый период через запятую: ', 'milk coffee butter');
-        appData.addExpenses = addExp.split(' ');
-        let a = [];
-        for(let item of appData.addExpenses) {
-            a.push(item.charAt(0).toUpperCase() + item.substring(1));
+        let addExp; 
+        do{
+            addExp = prompt('Перечислите возможные расходы за рассчитываемый период через запятую: ', 'milk coffee butter');
+            appData.addExpenses = addExp.split(' ');
+            let a = [];
+            for(let item of appData.addExpenses) {
+                a.push(item.charAt(0).toUpperCase() + item.substring(1));
+            }
+            console.log(a);
         }
-        console.log(a);
+        while(!isNaN(addExp) || addExp === '' || addExp === null)
 
         appData.deposit = confirm('Есть ли у вас депозит в банке?');
         for(let i = 0; i < 2; i++) {
-                let question = prompt("Какие обязательные ежемесячные расходы у вас есть?");
+                let question;
+                do {
+                    question = prompt("Какие обязательные ежемесячные расходы у вас есть?");
+                }
+                while(!isNaN(question) || question === '' || question === null);
+
                 let result;
                 do{
                     result = prompt("Во сколько это обойдется?"); 
 
                 } 
                 while(isNaN(result) || result === '' || result === null);
-                    appData.expenses[question] = result;
+                    appData.expenses[question] = result;                
                            
         } 
     },
