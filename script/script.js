@@ -194,12 +194,33 @@ let appData = {
         incomePeriodValue.value = res;
     },
     disabledInput: function() {
+
         for (var i = 0; i < 12; i++) {
-          all[i].disabled = true;
-        }
+            all[i].disabled = true;
+          }
+  
+          for(let i = 0; i < incomeItem.length; i++) {
+  
+              for(let j = 0; j < incomeItem[i].children.length; j++) {
+             
+                  incomeItem[i].children[j].setAttribute('disabled', 'disabled');
+              }  
+  
+          }
+  
+          for(let i = 0; i < expensesItems.length; i++) {
+              
+              for(let j = 0; j < expensesItems[i].children.length; j++) {
+             
+                  expensesItems[i].children[j].setAttribute('disabled', 'disabled');
+              }  
+  
+          } 
     }
 };
 
+expensesPlus.addEventListener('click', appData.addExpensesBlock);
+incomePlus.addEventListener('click', appData.addIncomeBlock);
 
 buttonStart.setAttribute('disabled', 'disabled');
 buttonStart.style.background = '#cccccc';
@@ -210,9 +231,7 @@ salaryAmount.addEventListener('input', function() {
 });
 
 
-expensesPlus.addEventListener('click', appData.addExpensesBlock);
 
-incomePlus.addEventListener('click', appData.addIncomeBlock);
 
 periodSelect.addEventListener('click', appData.changePeriod);
 
