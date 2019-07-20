@@ -11,6 +11,7 @@ document.addEventListener('DOMContentLoaded', function() {
             let newElem;
             if(selector === "."){
                 newElem = document.createElement('div');
+                newElem.id = "idProva";
                 newElem.style.cssText =  `height:${height}px; width:${width}px; background: ${bg}; font-size: ${fontSize}px;`  
                 newElem.style.position = 'absolute';
             }
@@ -23,37 +24,81 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    let newElementOne = new DomElement('.', '100', '100', 'green', '0');
+    let newElementOne = new DomElement('.', '100', '100', 'green', '20');
     newElementOne.createElement('.');
 
     let square = document.querySelector('div');
+    //let square = document.querySelector('p');
   
     document.addEventListener('keydown', changeKey);
    
+
     function changeKey(e) {
+      let a;
+      let b;
         switch(e.keyCode) {
-            case 37: square.style.marginLeft = '10px'; // left
+            case 37: 
+            var curMargin = parseInt(square.style.marginLeft);
+            square.style.marginLeft = ((isNaN(curMargin) ? 0 : curMargin) - 10)+"px"; // left
             console.log(e.keyCode); 
             break;
 
-            case 38: square.style.marginTop = '10px';// up
+            case 38: 
+            var curMargin = parseInt(square.style.marginTop);
+            square.style.marginTop = ((isNaN(curMargin) ? 0 : curMargin) - 10)+"px";;// up
             console.log(e.keyCode);
             break;
 
-            case 39: square.style.marginLeft = '-10px'; // right
+            case 39: 
+            var curMargin = parseInt(square.style.marginLeft);
+            square.style.marginLeft =((isNaN(curMargin) ? 0 : curMargin) + 10)+"px";;; // right
+            console.log(e.keyCode);
+           break;
+
+            case 40: 
+            var curMargin = parseInt(square.style.marginTop);
+            square.style.marginTop =((isNaN(curMargin) ? 0 : curMargin) + 10)+"px";;; // down
             console.log(e.keyCode);
             break;
 
-            case 40: square.style.marginTop = '-10px'; // down
-            console.log(e.keyCode);
-            break;
-
-            default: return; 
-        
         }
     };
 
 }) 
+
+/*const myLesson = [
+    {lesson: 1, status: true},
+    {lesson: 2, status: true},
+    {lesson: 3, status: false},
+    {lesson: 4, status: true},
+    {lesson: 5, status: false},
+    {lesson: 6, status: true},
+    {lesson: 7, status: true},
+    {lesson: 8, status: true},
+    {lesson: 9, status: true},
+    {lesson: 10, status: false}
+];
+
+const falseLesson = function() {
+    let arr = [];
+    let obj = {};
+    myLesson.forEach(function(item) {
+      let a = item.lesson;
+      let b = item.status;
+      if(b == false) {
+          obj[a] = item;
+          obj[b] = item;
+      }
+      else {
+          return null;
+      }
+    })
+    arr.push(obj);
+    console.log(arr);    
+}
+
+falseLesson();*/
+
 
 
 
